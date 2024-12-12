@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Добро пожаловать в наш магазин</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Главная</a>
+            <a href="{{ url_for('cart') }}">Корзина</a>
+            {% if session.get('user_id') %}
+                <a href="{{ url_for('logout') }}">Выйти</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Войти</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        <section class="products">
+            {% for product in products %}
+                <article class="product-card">
+                    <img src="{{ product['image_url'] }}" alt="{{ product['name'] }}">
+                    <h2>{{ product['name'] }}</h2>
+                    <p>{{ product['description'] }}</p>
+                    <p>Цена: {{ product['price'] }} ₽</p>
+                    <a href="{{ url_for('product', product_id=product['id']) }}">Подробнее</a>
+                </article>
+            {% endfor %}
+        </section>
+    </main>
+</body>
+</html>

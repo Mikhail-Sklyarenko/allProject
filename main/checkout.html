@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Оформление заказа</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Оформление заказа</h1>
+        <a href="{{ url_for('cart') }}">Назад в корзину</a>
+    </header>
+    <main>
+        <form method="post">
+            <label for="address">Адрес доставки:</label>
+            <input type="text" id="address" name="address" required>
+            <label for="payment">Способ оплаты:</label>
+            <select id="payment" name="payment_method">
+                <option value="card">Карта</option>
+                <option value="cash">Наличные</option>
+            </select>
+            <label for="delivery">Способ доставки:</label>
+            <select id="delivery" name="delivery_method">
+                <option value="courier">Курьер</option>
+                <option value="pickup">Самовывоз</option>
+            </select>
+            <button type="submit">Оформить заказ</button>
+        </form>
+    </main>
+</body>
+</html>
